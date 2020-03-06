@@ -29,11 +29,16 @@ public class Enemy : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, Wpoints.waypoints[index].position, speed * Time.deltaTime); // y-axis problem, it would float a bit here
 
             Vector3 dir = Wpoints.waypoints[index].position - transform.position;
+
             float angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.down); // The rotation needs to change, try using += for smoother turns
 
             if(Vector3.Distance(transform.position, Wpoints.waypoints[index].position) < 0.1f)
+            {
                 index++;
+
+            }
 
         }
         else
@@ -41,11 +46,14 @@ public class Enemy : MonoBehaviour
 
             if(timeBtwShots <= 0 )
             {
-                Instantiate(projectile, transform.position, Quaternion.identity);
+                Instantiate(projectile, transform.position, transform.rotation);
                 timeBtwShots = startTimeBtwShots;
             }
             else
+            {
                 timeBtwShots -= Time.deltaTime;
+
+            }
         }
         //Enemy Fires Projectile goes here
 
