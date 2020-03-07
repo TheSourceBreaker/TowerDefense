@@ -11,6 +11,8 @@ TagManager:
   - Waypoints
   - MainTower
   - GunBarrel
+  - doorHinge
+  - Collectable
   layers:
   - Default
   - TransparentFX
